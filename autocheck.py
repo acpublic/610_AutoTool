@@ -175,7 +175,7 @@ class Web():
                 else:
                     print('[NG]勤務実績コメント未入力')
             else:
-                if off_day_list2[i] == '無給休暇' or off_day_list2[i] == '夏期休暇' or off_day_list2[i] == '法定休日' or off_day_list2[i] == '休日':
+                if off_day_list2[i] == '無給休暇' or off_day_list2[i] == '夏期休暇' or off_day_list2[i] == '法定休日' or off_day_list2[i] == '休日' or off_day_list2[i] == '年休':
                     print('休日')
                 else:
                     print('退勤未入力')
