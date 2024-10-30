@@ -1,4 +1,4 @@
-## 初期設定
+### 初期設定 ##################################################
 # 待機時間
 WEB_LOAD_TIME = 5
 
@@ -37,6 +37,7 @@ import os
 import signal
 import sys
 
+##################################################
 class Web():
     def __init__(self):
         # 先月
@@ -110,6 +111,8 @@ class Web():
         data2 = tmp2[0]
         
         # 出勤/退勤時間を取得
+        stamp_in_time_list2 = data2['出勤打刻']
+        stamp_out_time_list2 = data2['退勤打刻']
         in_time_list2 = data2['出勤']
         out_time_list2 = data2['退勤']
         off_day_list2 = data2['休暇／休日']
@@ -149,33 +152,38 @@ class Web():
                     if int(plan_out_time_hh) < int(h_out_time):
                         print('[NG]退勤予定時間 < 退勤実績時間')
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
-                            print('[NG]勤務実績コメント未入力 残業あり/残業なし')
+                            print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
                     
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) < int(m_out_time):
                         print('[NG]退勤予定時間 < 退勤実績時間')
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
-                            print('[NG]勤務実績コメント未入力 残業あり/残業なし')
+                            print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
                     
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) == int(m_out_time):
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
-                            print('[NG]勤務実績コメント未入力 残業あり/残業なし')
+                            print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
                             
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) > int(m_out_time):
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
-                            print('[NG]勤務実績コメント未入力 残業あり/残業なし')
+                            print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
                         if '差分理由' not in comment_list2[i]:
                             print('[NG]差分理由コメント未入力')
 
                     elif int(plan_out_time_hh) > int(h_out_time):
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
-                            print('[NG]勤務実績コメント未入力 残業あり/残業なし')
+                            print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
                         if '差分理由' not in comment_list2[i]:
                             print('[NG]差分理由コメント未入力')
 
                 else:
                     print('[NG]勤務実績コメント未入力')
+                    
+                if type(stamp_in_time_list2[i]) is not str or type(stamp_out_time_list2[i]) is not str:
+                    if '打刻漏れ' not in comment_list2[i]:
+                        print('[NG]勤務実績コメント未入力 打刻漏れ')                    
+                    
             else:
-                if off_day_list2[i] == '無給休暇' or off_day_list2[i] == '夏期休暇' or off_day_list2[i] == '法定休日' or off_day_list2[i] == '休日' or off_day_list2[i] == '年休':
+                if off_day_list2[i] == '無給休暇' or off_day_list2[i] == '夏期休暇' or off_day_list2[i] == '法定休日' or off_day_list2[i] == '休日':
                     print('休日')
                 else:
                     print('退勤未入力')
