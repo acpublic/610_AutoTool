@@ -1,4 +1,4 @@
-## 初期設定
+### 初期設定 ##################################################
 # 待機時間
 WEB_LOAD_TIME = 5
 WAIT_TIME = 3
@@ -66,9 +66,9 @@ import os
 import signal
 import sys
 
+##################################################
 class Web():
     def __init__(self):
-        self.mywork = False
         
         args = sys.argv
         self.prev = False
@@ -197,7 +197,9 @@ class Web():
                 rst_time_hh = DEFAULT_RST_HH
                 rst_time_mm = DEFAULT_RST_MM
                 comment_tmp = comment_list[i]
+                print(comment_tmp)
                 
+                self.mywork = False                
                 if '[' in comment_tmp and ']' in comment_tmp:
                     self.mywork = True
                 
@@ -258,8 +260,13 @@ class Web():
                     select = Select(dropdown)
                     select.select_by_index(2)
                     # 一時保存
-                    saved_btn = driver2.find_element(By.CLASS_NAME,'')
-                    saved_btn.click()
+                    try:
+                        saved_btn = driver2.find_element(By.CLASS_NAME,'')
+                        saved_btn.click()
+                        #print('一時保存')
+                    except:
+                        print('一時保存無し')
+                        
                     time.sleep(WAIT_TIME)
             
             # 次の日にする
