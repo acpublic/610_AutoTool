@@ -147,22 +147,24 @@ class Web():
                         print('[NG]勤務予定未入力 残業あり/残業なし')
                 else:
                     print('[NG]勤務予定コメント未入力')
-                    
+
                 if type(comment_list2[i]) is str:
                     if int(plan_out_time_hh) < int(h_out_time):
                         print('[NG]退勤予定時間 < 退勤実績時間')
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
                             print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
-                    
+
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) < int(m_out_time):
                         print('[NG]退勤予定時間 < 退勤実績時間')
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
                             print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
-                    
+
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) == int(m_out_time):
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
                             print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
-                            
+                        if '差分理由' in comment_list2[i]:
+                            print('[NG]差分理由コメント不要')
+
                     elif int(plan_out_time_hh) == int(h_out_time) and int(plan_out_time_mm) > int(m_out_time):
                         if '残業あり' not in comment_list2[i] and '残業なし' not in comment_list2[i]:
                             print('[NG]勤務実績コメント未入力 残業あり or 残業なし')
