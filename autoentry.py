@@ -280,4 +280,5 @@ class Web():
         driver2.quit()
         
 # 開始
-web = Web()
+if __name__ == "__main__":
+    web = Web()
