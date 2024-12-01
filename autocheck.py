@@ -194,4 +194,5 @@ class Web():
         driver.quit()                            
         
 # 開始
-web = Web()
+if __name__ == "__main__":
+    web = Web()
